@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Tables >
+    <Table name = "Employee" >
+        <column name="Eid">Integer</column>
+        <column name="Name">Varchar</column>
+        <column name="Gender">Varchar</column>
+        <column name="Address">Varchar</column>
+    </Table>
+</Tables>
