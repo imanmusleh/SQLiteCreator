@@ -74,7 +74,7 @@ public class DBCreator {
         }
     }
 
-    public void insertRecords( String tableName , List<Map> rows)throws IOException  {//List<Map> rows, List<String> fieldNames, String tableName)
+    public long insertRecords( String tableName , List<Map> rows)throws IOException  {//List<Map> rows, List<String> fieldNames, String tableName)
         try {
             SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
 //            db.delete(tableName, null, null);
@@ -89,13 +89,13 @@ public class DBCreator {
                 }
                 // Do things with the list
                 long insert = db.insert(tableName, null, values);
-                Log.i("insertt >>.", insert+">> table : "+tableName);
+                return insert; 
             }
         } finally {
             DatabaseManager.getInstance().closeDatabase();
         }
     }
-    public void updateRecord (String tableName, Map<String,String> row, String column, String value ){
+    public long updateRecord (String tableName, Map<String,String> row, String column, String value ){
         try {
             SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
              ContentValues values = new ContentValues();
@@ -107,18 +107,20 @@ public class DBCreator {
             }
             // Do things with the list
             long update = db.update(tableName, values," Eid = "+value,null );
-            Log.i("update >>.", update+"");
+            Log.i("update >>.", update+""); 
+            return update;
 
         } finally {
             DatabaseManager.getInstance().closeDatabase();
         }
 
     }
-    public void deleteRecord (String tableName, String clmn , String value ){
+    public long deleteRecord (String tableName, String clmn , String value ){
         try {
             SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
             long delete = db.delete(tableName, clmn+"="+value,null );
             Log.i("delete >>.", delete+"");
+            return delete;
 
         } finally {
             DatabaseManager.getInstance().closeDatabase();
