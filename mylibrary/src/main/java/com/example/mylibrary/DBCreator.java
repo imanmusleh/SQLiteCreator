@@ -16,6 +16,7 @@ import java.util.Map;
 public class DBCreator {
     String dbName; 
     int version;
+    Context context;
     xmlParser parserObj;
     public Context getContext() {
         return context;
