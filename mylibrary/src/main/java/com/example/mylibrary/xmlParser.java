@@ -95,4 +95,34 @@ public class xmlParser {
         setMap(arrayList);
     }
 
+    
+    WHILE eventType != END_DOCUMENT
+       IF eventType = START_TAG
+                
+         If parserName = "Table"
+            tableName = parserVlaue of "name"
+            map.put("Table", tableName)
+
+         ELSEIF  parserName = "column"
+                column  = parserVlaue of "name"
+         ENDIF
+       ELSEIF eventType = END_TAG
+
+                IF parserName =  "column"
+                    map.put(column, type)
+                    key = null;
+                    value = null;
+                
+                ELSEIF parserName =  "Table"
+                    arrayList.add(map);
+                ENDIF
+                
+       ELSEIF eventType = TEXT
+                IF column != null
+                    type = textOfParser
+                ENDIF
+      ENDIF 
+            eventType = nextParser
+      ENDWHILE
+    
 }
