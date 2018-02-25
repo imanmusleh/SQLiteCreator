@@ -99,7 +99,7 @@ public class xmlParser {
     WHILE eventType != END_DOCUMENT
        IF eventType = START_TAG
                 
-         If parserName = "Table"
+         IF parserName = "Table"
             tableName = parserVlaue of "name"
             map.put("Table", tableName)
 
